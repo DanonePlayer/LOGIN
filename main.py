@@ -65,7 +65,7 @@ class Login:
         print(nome_v)
         senha_v = ''.join(map(str, (b[0])))
         print(senha_v)
-        if nome == nome_v or senha == senha_v:
+        if nome == nome_v or senha == senha_v or nome == "" or senha == "":
             messagebox.showerror("alerta", "TA TUDO ERRADO")
         else:
             sql_insert_cadas = f'INSERT INTO Login VALUES(NULL, "{nome}", "{senha}");'
