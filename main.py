@@ -57,13 +57,20 @@ class Login:
     def cadastramento(self):
         nome = self.entry_nome.get()
         senha = self.entry_senha.get()
-        sql_verifica = 'SELECT Usuario, Senha FROM Login'
-        a = db_consultar(sql_verifica)
-        print(a)
-        parsed_sql_verifica = ''.join(map(str, (a[0])))
-        print(parsed_sql_verifica)
+        sql_verifica_u = 'SELECT Usuario FROM Login'
+        sql_verifica_s = 'SELECT Senha FROM Login'
+        a = db_consultar(sql_verifica_u)
+        b = db_consultar(sql_verifica_s)
+        nome_v = ''.join(map(str, (a[0])))
+        print(nome_v)
+        senha_v = ''.join(map(str, (b[0])))
+        print(senha_v)
+        if nome == nome_v or senha == senha_v:
+            messagebox.showerror("alerta", "TA TUDO ERRADO")
+        else:
+            sql_insert_cadas = f'INSERT INTO Login VALUES(NULL, "{nome}", "{senha}");'
+            db_inserir(sql_insert_cadas)
 
-        # sql_insert_cadas = f'INSERT INTO Login VALUES(NULL, "{nome}", "{senha}");'
 
 
 #criar um arquivo separado só pra isso
